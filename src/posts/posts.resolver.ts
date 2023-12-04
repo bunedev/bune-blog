@@ -19,7 +19,9 @@ export class PostsResolver {
   }
 
   @Mutation(() => Post)
-  async createPost(@Args() createPostData: CreatePostInput): Promise<Post> {
+  async createPost(
+    @Args('data') createPostData: CreatePostInput,
+  ): Promise<Post> {
     return await this.postsService.createPost(createPostData);
   }
 
