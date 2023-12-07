@@ -1,6 +1,5 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { GqlAllExceptionsFilter } from 'src/common/filters/all-exceptions.filter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -10,4 +9,3 @@ async function bootstrap() {
   await app.listen(Bun.env.APP_PORT || 9697);
 }
 bootstrap();
-
