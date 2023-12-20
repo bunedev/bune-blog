@@ -6,6 +6,6 @@ async function bootstrap() {
 
   // Apply the exception filter globally
   app.useGlobalFilters(new GqlAllExceptionsFilter());
-  await app.listen(Bun.env.APP_PORT || 9697);
+  await app.listen(Bun.env.APP_PORT || 9698);
 }
 bootstrap();
