@@ -1,9 +1,0 @@
-type Post @key(fields: "id") {
-  id: ID!
-  title: String!
-}
-
-extend type Query {
-  getPost(id: ID!): Post
-}
-

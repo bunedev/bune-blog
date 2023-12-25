@@ -2,7 +2,7 @@ import { IsString } from 'class-validator';
 import { Field, InputType } from '@nestjs/graphql';
 
 @InputType()
-export class CreatePostInput {
+export class UpdatePostInput {
   @IsString()
   @Field(() => String, { nullable: false })
   title: string;

@@ -14,6 +14,62 @@ datasource db {
 model Post {
   id        String   @id @default(uuid())
   title      String
+  slug        String?
+  description String
+  metaTitle   String? // SEO
+  metaDescription String? // SEO 
+  keywords    String?
+  image       String
+  urlOrigin   String?
+  isMedium    Boolean @default(false)  // If true, will redirect to the article according to the origin url
+  content     String
+  authorId      String
+  lang        String? @default("en")
+  comments    Comment[]
+  categories Category[]
+  tags        Tag[]
+  likes    Int @default(0)
+  views    Int @default(0)
+  readingTime  Int?
+  status   PostStatus @default(DRAFT)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  deletedAt DateTime?
+}
+
+model Comment {
+  id        String      @id @default(uuid())
+  content   String
+  authorId  String
+  post      Post        @relation(fields: [postId], references: [id])
+  postId    String
+  likes     Int @default(0)
+  createdAt DateTime    @default(now())
+  deletedAt DateTime?
+  parentId  String?
+  parent    Comment?    @relation("ChildToParent", fields: [parentId], references: [id])
+  children  Comment[]   @relation("ChildToParent")
+}
+
+
+model Category {
+  id    String     @id @default(uuid())
+  name  String
+  posts Post[]
+  parentId String?
+  parent   Category? @relation("ChildToParent", fields: [parentId], references: [id])
+  children Category[] @relation("ChildToParent")
+}
+
+model Tag {
+  id    String     @id @default(uuid())
+  name  String
+  posts Post[]
+}
+
+
+enum PostStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
 }
