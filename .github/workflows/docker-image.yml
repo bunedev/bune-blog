@@ -43,7 +43,7 @@ jobs:
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/bune-blog
         cache-from: type=local,src=/tmp/.buildx-cache
-        cache-to: type=local, dest=/tmp/.buildx-cache
+        cache-to: type=local,dest=/tmp/.buildx-cache
 
     - name: Verify
       run: echo ${{ steps.docker_build.outputs.digest }}
